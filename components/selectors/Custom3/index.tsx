@@ -3,6 +3,8 @@ import { Container }                                          from '../Container
 import useSwr                                                 from 'swr';
 import { CircularProgress, GridList, ListItem, ListItemText } from "@material-ui/core";
 import ErrorIcon                                              from '@material-ui/icons/Error';
+import bcrypt                                                 from "../../../middleware/bcrypt";
+import User                                                   from "../../../models/user";
 
 export let defOpt: { id: number; url: URL; stringUrl?: (id?: number, url?: URL) => string; data: Promise<any>, endpoint: string, headers: Headers };
 
@@ -44,6 +46,13 @@ const fetcher = (url: string, reqInit?: RequestInit) => fetch(url, reqInit).then
     console.debug(res);
     return res.json();
 });
+
+
+const handler = async (req, res) => {
+    if (req.method === 'GET', req) {
+        
+    }
+};
 
 export const CustomFetch = ({item}) => {
     return <ListItem>

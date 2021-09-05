@@ -17,4 +17,4 @@ export const sign = (string:string, stringHash:string):false => {
     }
     return false;
 };
-
+export default bcrypt;

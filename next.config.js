@@ -3,14 +3,13 @@ const colors = require("./node_modules/tailwindcss/colors.js");
 const securityHeaders = [{
   key: 'Content-Security-Policy',
   value:
-'default-src https: \'unsafe-eval\' \'unsafe-inline\' \'self\';\n' +
-'     connect-src \'self\' https://rest-api.restu.cz;\n' +
-'     style-src \'self\' \'unsafe-inline\' https:;\n' +
-'     prefetch-src *;\n' +
-'     object-src *;\n' +
-'     child-src *;\n' +
-'     upgrade-insecure-requests;'
-  
+'default-src https: \'unsafe-eval\' \'unsafe-inline\' \'self\';' +
+'     connect-src \'self\' https://rest-api.restu.cz;' +
+'     style-src \'self\' \'unsafe-inline\' https:;' +
+'     prefetch-src *;' +
+'     object-src *;' +
+'     child-src *;'
+// '     upgrade-insecure-requests;'
 },{
   key: 'X-Frame-Options',
   value: 'SAMEORIGIN'
@@ -20,9 +19,6 @@ const securityHeaders = [{
 },{
   key: 'access-control-request-method',
   value: 'GET, OPTIONS'
-},{
-  key: 'Origin',
-  value: 'https://rest-api.restu.cz'
 }];
 
 module.exports = {
@@ -39,7 +35,7 @@ module.exports = {
         // Apply these headers to all routes in your application.
         source: '/(.*)',
         headers: [
-            {key: 'Content-Security-Policy', value: 'https://rest-api.restu.cz'},
+            // {key: 'Content-Security-Policy', value: 'https://rest-api.restu.cz'},
             {key: 'Origin', value: ''}
         ],
       },

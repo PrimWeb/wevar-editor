@@ -1,8 +1,7 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
-var Schema = mongoose.Schema;
 
-var user = new Schema({
+let user = new Schema({
     name: {
         type: String,
         required: true

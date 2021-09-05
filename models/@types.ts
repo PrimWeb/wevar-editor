@@ -1,7 +1,8 @@
-import { ObjectId } from "mongoose";
-import { object }   from "prop-types";
+import mongoose, { ObjectId, SchemaType, SchemaTypes } from "mongoose";
+import { ObjectID }                                    from "bson";
+export * from "mongoose";
 
-export type RestaurantId = ObjectId;
+export const RestaurantId = new SchemaType('RestaurantId', {type: ObjectId, required: true});
 
 export type Items = {
     id: number;
@@ -18,17 +19,17 @@ export type Items = {
 export type Categories = {
     id: number;
     name: string;
-    items: Items[];
+    items: [Items];
 }
 
 export type OpeningHours = {
-    monday: Int8Array[][],
-    tuesday: Int8Array[][],
-    wednesday: Int8Array[][],
-    thursday: Int8Array[][],
-    friday: Int8Array[][],
-    saturday: Int8Array[][],
-    sunday: Int8Array[][],
+    monday: [Int8Array[]],
+    tuesday: [Int8Array[]],
+    wednesday: [Int8Array[]],
+    thursday: [Int8Array[]],
+    friday: [Int8Array[]],
+    saturday: [Int8Array[]],
+    sunday: [Int8Array[]],
 }
 export type TagsTags = {
     id: number;
@@ -37,7 +38,7 @@ export type TagsTags = {
 export type Tags = {
     id: number;
     name: string;
-    tags: TagsTags[];
+    tags: [TagsTags];
 }
 export type Photos = {
     id: number;
@@ -53,4 +54,16 @@ export type MenusId = {
     $oid: string;
 }
 
+//export default SchemaTypes;
+/*
+class AppSchemaTypes extends mongoose.SchemaType {
+    constructor() {
+        super('mongoose', SchemaType);
+        return module.exports;
+    }
+}
 
+const Types = new AppSchemaTypes();
+
+export default Types;
+*/
