@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  editor:
+    restart: always
+    image: node:14-alpine
+    working_dir: /var/www/html
+    expose:
+      - 3000
+    command:
+      - "yarn install --network-timeout=10000"
+      - "yarn dev"
+    hostname: editor
+    entrypoint: 'sh -c "yarn install;yarn run dev"'
+    environment:
+      TZ: "Europe/Prague"
+    volumes:
+      - ./:/var/www/html
+      - node_modules:/var/www/html/node_modules
+    ports:
+      - 3000:3000
+
+volumes:
+  node_modules:
+    external: true

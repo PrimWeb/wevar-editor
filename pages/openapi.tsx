@@ -1,26 +1,38 @@
-import React from 'react';
-import Document, { Html, Head, Main} from 'next/document';
-import { Renderer, OpenAPIApp } from '../components/openapi';
+import React             from 'react';
+import { createTheme }   from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
+import { NextSeo }       from 'next-seo';
+import { Openapi }       from 'components/openapi';
 
-import '../styles/OpenAPI.css';
+const options = {
+    url: "https://septimtet.prim.dev/openapi"
+};
 
-// noinspection HtmlRequiredTitleElement
-export default class Openapi extends Document {
-    render() {
-        return (
-            <Html>
-                <Head>
-                    {/* Step 5: Output the styles in the head  */}
-                    {(this.props as any).styleTags}
-                </Head>
-                <body>
-                <Main />
-                <Renderer
-                    enabled={false}
-                    onRender={OpenAPIApp}
+const theme = createTheme({
+    typography: {
+        fontFamily: [
+            'acumin-pro',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+        ].join(','),
+    },
+});
+
+function App() {
+    return (
+        <ThemeProvider theme={theme}>
+            <div className="h-full h-screen">
+                <NextSeo
+                    title="Wevar Editor"
+                    description="A React framework for building drag-n-drop page editors."
+                    canonical="https://editor.prim.dev/"
                 />
-                </body>
-            </Html>
-        );
-    }
+                <Openapi url={options.url}/>
+            </div>
+        </ThemeProvider>
+    );
 }
+
+export default App;
