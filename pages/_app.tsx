@@ -4,8 +4,8 @@ import React from 'react';
 
 import '../styles/app.css';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function MyApp({Component, pageProps}) {
+    return <Component {...pageProps} />;
 }
 
 // Only uncomment this method if you have blocking data requirements for

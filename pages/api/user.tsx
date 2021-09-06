@@ -1,7 +1,5 @@
-import connectDB      from '../../middleware/mongodb';
-import bcrypt         from '../../middleware/bcrypt';
-import User           from '../../models/user';
-import { ErrorProps } from "next/error";
+import bcrypt from '../../middleware/bcrypt';
+import User   from '../../models/user';
 
 const handler = async (req, res) => {
     if (req.method === 'POST') {
@@ -19,8 +17,8 @@ const handler = async (req, res) => {
                 // Create new user
                 var usercreated = await user.save();
                 return res.status(200).send(usercreated);
-            } catch (error:any) {
-                return res.status(500).send(error instanceof Error?error.message:'Error Create new user');
+            } catch (error: any) {
+                return res.status(500).send(error instanceof Error ? error.message : 'Error Create new user');
             }
         } else {
             res.status(422).send('data_incomplete');

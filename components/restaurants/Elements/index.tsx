@@ -2,6 +2,7 @@ import { useNode }                                                              
 import { Divider, ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Grid, } from '@material-ui/core';
 import { makeStyles }                                                                   from '@material-ui/core/styles';
 import React                                                                            from 'react';
+import Restaurant                                                                       from './Restaurant';
 
 const usePanelStyles = makeStyles((_) => ({
     root: {
@@ -34,7 +35,7 @@ const useSummaryStyles = makeStyles((_) => ({
 }));
 
 // noinspection JSUnusedGlobalSymbols
-export const ToolbarSection = ({title, props, summary, children}: any) => {
+export const ListSection = ({title, props, summary, children}: any) => {
     const panelClasses = usePanelStyles({});
     const summaryClasses = useSummaryStyles({});
     const {nodeProps} = useNode((node) => ({
@@ -48,27 +49,9 @@ export const ToolbarSection = ({title, props, summary, children}: any) => {
     return (
         <ExpansionPanel classes={panelClasses}>
             <ExpansionPanelSummary classes={summaryClasses}>
-                <div className="px-6 w-full">
-                    <Grid container direction="row" alignItems="center" spacing={3}>
-                        <Grid item xs={4}>
-                            <h5 className="text-sm text-light-gray-1 text-left font-medium text-dark-gray">
-                                {title}
-                            </h5>
-                        </Grid>
-                        {summary && props ? (
-                            <Grid item xs={8}>
-                                <h5 className="text-light-gray-2 text-sm text-right text-dark-blue">
-                                    {summary(
-                                        props.reduce((acc: any, key: any) => {
-                                            acc[key] = nodeProps[key];
-                                            return acc;
-                                        }, {})
-                                    )}
-                                </h5>
-                            </Grid>
-                        ) : null}
-                    </Grid>
-                </div>
+                <Restaurant {...props} title={title}
+                            summary={summary}
+                            children={children}/>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails style={{padding: '0px 24px 20px'}}>
                 <Divider/>

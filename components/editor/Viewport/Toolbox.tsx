@@ -1,17 +1,16 @@
 import { Element, useEditor } from '@craftjs/core';
-import { Tooltip } from '@material-ui/core';
-import React from 'react';
-import styled from 'styled-components';
+import { Tooltip }            from '@material-ui/core';
+import React                  from 'react';
+import styled                 from 'styled-components';
 
-import ButtonSvg      from '../../../public/icons/toolbox/button.svg';
-import SquareSvg      from '../../../public/icons/toolbox/rectangle.svg';
-import TypeSvg        from '../../../public/icons/toolbox/text.svg';
-import YoutubeSvg     from '../../../public/icons/toolbox/video-line.svg';
-import { Button }     from '../../selectors/Button';
-import { Container }  from '../../selectors';
-import { Text }       from '../../selectors';
+import ButtonSvg           from '../../../public/icons/toolbox/button.svg';
+import SquareSvg           from '../../../public/icons/toolbox/rectangle.svg';
+import TypeSvg             from '../../../public/icons/toolbox/text.svg';
+import YoutubeSvg          from '../../../public/icons/toolbox/video-line.svg';
+import { Button }          from '../../selectors/Button';
+import { Container, Text } from '../../selectors';
 import { Video }           from '../../selectors/Video';
-import { Custom3 } from '../../selectors/Custom3';
+import { Custom3 }         from '../../selectors/Custom3';
 
 const ToolboxDiv = styled.div<{ enabled: boolean }>`
   transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
@@ -33,62 +32,62 @@ const Item = styled.a<{ move?: boolean }>`
 `;
 
 export const Toolbox = ({props}) => {
-  const {
-    enabled,
-    connectors: { create },
-  } = useEditor((state) => ({
-    enabled: state.options.enabled,
-  }));
+    const {
+        enabled,
+        connectors: {create},
+    } = useEditor((state) => ({
+        enabled: state.options.enabled,
+    }));
 
-  return (
-    <ToolboxDiv
-      enabled={enabled && enabled}
-      className="toolbox transition w-12 h-full flex flex-col bg-white"
-    >
-      <div className="flex flex-1 flex-col items-center pt-3">
-        <div ref={(ref) => create(ref, <Element
-            canvas
-            is={Container}
-            background={{r: 78, g: 78, b: 78, a: 1}}
-            color={{r: 0, g: 0, b: 0, a: 1}}
-            height="300px"
-            width="300px"/>
-        )}>
-          <Tooltip title="Container" placement="right">
-            <Item className="m-2 pb-2 cursor-pointer block" move>
-              <SquareSvg />
-            </Item>
-          </Tooltip>
-        </div>
-        <div ref={(ref) =>create(ref, <Text fontSize="12" textAlign="left" text="Hi there" />)}>
-          <Tooltip title="Text" placement="right">
-            <Item className="m-2 pb-2 cursor-pointer block" move>
-              <TypeSvg />
-            </Item>
-          </Tooltip>
-        </div>
-        <div ref={(ref) => create(ref, <Button />)}>
-          <Tooltip title="Button" placement="right">
-            <Item className="m-2 pb-2 cursor-pointer block" move>
-              <ButtonSvg />
-            </Item>
-          </Tooltip>
-        </div>
-        <div ref={(ref) => create(ref, <Video />)}>
-          <Tooltip title="Video" placement="right">
-            <Item className="m-2 pb-2 cursor-pointer block" move>
-              <YoutubeSvg />
-            </Item>
-          </Tooltip>
-        </div>
-        <div ref={(ref) => create(ref, <Custom3 {...props}/>)}>
-          <Tooltip title="Custom3" placement="right">
-              <Item className="m-2 pb-2 cursor-pointer block" move>
-                  <TypeSvg />
-              </Item>
-          </Tooltip>
-        </div>
-      </div>
-    </ToolboxDiv>
-  );
+    return (
+        <ToolboxDiv
+            enabled={enabled && enabled}
+            className="toolbox transition w-12 h-full flex flex-col bg-white"
+        >
+            <div className="flex flex-1 flex-col items-center pt-3">
+                <div ref={(ref) => create(ref, <Element
+                    canvas
+                    is={Container}
+                    background={{r: 78, g: 78, b: 78, a: 1}}
+                    color={{r: 0, g: 0, b: 0, a: 1}}
+                    height="300px"
+                    width="300px"/>
+                )}>
+                    <Tooltip title="Container" placement="right">
+                        <Item className="m-2 pb-2 cursor-pointer block" move>
+                            <SquareSvg/>
+                        </Item>
+                    </Tooltip>
+                </div>
+                <div ref={(ref) => create(ref, <Text fontSize="12" textAlign="left" text="Hi there"/>)}>
+                    <Tooltip title="Text" placement="right">
+                        <Item className="m-2 pb-2 cursor-pointer block" move>
+                            <TypeSvg/>
+                        </Item>
+                    </Tooltip>
+                </div>
+                <div ref={(ref) => create(ref, <Button/>)}>
+                    <Tooltip title="Button" placement="right">
+                        <Item className="m-2 pb-2 cursor-pointer block" move>
+                            <ButtonSvg/>
+                        </Item>
+                    </Tooltip>
+                </div>
+                <div ref={(ref) => create(ref, <Video/>)}>
+                    <Tooltip title="Video" placement="right">
+                        <Item className="m-2 pb-2 cursor-pointer block" move>
+                            <YoutubeSvg/>
+                        </Item>
+                    </Tooltip>
+                </div>
+                <div ref={(ref) => create(ref, <Custom3 {...props}/>)}>
+                    <Tooltip title="Custom3" placement="right">
+                        <Item className="m-2 pb-2 cursor-pointer block" move>
+                            <TypeSvg/>
+                        </Item>
+                    </Tooltip>
+                </div>
+            </div>
+        </ToolboxDiv>
+    );
 };

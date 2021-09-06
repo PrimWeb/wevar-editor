@@ -6,7 +6,7 @@ import { Header }  from './Header';
 import { Sidebar } from './Sidebar';
 import { Toolbox } from './Toolbox';
 
-export const Viewport: React.FC = ({children}, props?:{}) => {
+export const Viewport: React.FC = ({children}, props?: {}) => {
     const {
         enabled,
         connectors,

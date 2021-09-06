@@ -1,11 +1,14 @@
 // noinspection JSClassNamingConvention
-import Types from './@types';
-import { DailyMenus }   from "./daily_menus";
-import { Menus }        from "./menus";
+import { DailyMenus }                             from "./daily_menus";
+import { Menus }                                  from "./menus";
+import { CoverPhoto, OpeningHours, Photos, Tags } from "../components/restaurants";
+import { RestaurantId }                           from "./vRestaurants";
+
+export * from "../components/restaurants";
 export * from "./@types";
 
 export type Restaurant = {
-    _id: Types.RestaurantId;
+    _id: RestaurantId;
     description: string;
     phone: string[];
     email: string;
@@ -18,17 +21,17 @@ export type Restaurant = {
     reservation_duration_min: number;
     reservation_duration_max: number;
     web_url: string;
-    opening_hours: [SchemaTypes.OpeningHours];
+    opening_hours: [OpeningHours];
     smoking_type: number;
-    tags: [SchemaTypes.Tags];
-    photos: [SchemaTypes.Photos];
+    tags: [Tags];
+    photos: [Photos];
     name: string;
     seo_name: string;
     street: string;
     city: string;
     zip_code: string;
     review_rating: number;
-    cover_photo: SchemaTypes.CoverPhoto;
+    cover_photo: CoverPhoto;
     id: number;
     gps_lat: number;
     gps_lon: number;

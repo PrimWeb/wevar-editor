@@ -1,7 +1,7 @@
 import { Element, useNode } from '@craftjs/core';
 import React                from 'react';
-import { Container } from '../Container';
-import { Button }    from '../Button';
+import { Container }        from '../Container';
+import { Button }           from '../Button';
 
 export const OnlyButtons = ({children, ...props}) => {
     const {

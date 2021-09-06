@@ -1,6 +1,6 @@
-import { useNode, useEditor }                    from '@craftjs/core';
+import { useEditor, useNode }                    from '@craftjs/core';
 import { ROOT_NODE }                             from '@craftjs/utils';
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import ReactDOM                                  from 'react-dom';
 import styled                                    from 'styled-components';
 

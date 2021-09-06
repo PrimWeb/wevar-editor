@@ -1,8 +1,9 @@
-import mongoose, { ObjectId, SchemaType, SchemaTypes } from "mongoose";
-import { ObjectID }                                    from "bson";
-export * from "mongoose";
+import { SchemaType } from "mongoose";
+import { ObjectID }   from "bson";
 
-export const RestaurantId = new SchemaType('RestaurantId', {type: ObjectId, required: true});
+export *                                               from "mongoose";
+
+export const RestaurantId = new SchemaType('RestaurantId', {type: ObjectID, required: true});
 
 export type Items = {
     id: number;
@@ -53,6 +54,13 @@ export type CoverPhoto = {
 export type MenusId = {
     $oid: string;
 }
+
+export declare type RestaurantsListElm = {
+    endpoint: string;
+    type: string;
+    error: string | Error;
+    data: [any] | object;
+};
 
 //export default SchemaTypes;
 /*
