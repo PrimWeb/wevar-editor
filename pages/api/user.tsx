@@ -10,9 +10,7 @@ const handler = async (req, res) => {
                 // Hash password to store it in DB
                 var passwordhash = await bcrypt.sign(password);
                 var user = new User({
-                    name,
-                    email,
-                    password: passwordhash,
+                    name, email, password: passwordhash,
                 });
                 // Create new user
                 var usercreated = await user.save();

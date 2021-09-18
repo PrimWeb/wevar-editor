@@ -1,8 +1,18 @@
 {
   "presets": [
-    "next/babel"
+    [
+      "next/babel",
+      {
+        "preset-env": {},
+        "preset-typescript": {},
+        "styled-jsx": {},
+        "transform-runtime": {}
+      }
+    ]
   ],
   "plugins": [
-    "inline-react-svg"
+    "inline-react-svg",
+    "@babel/plugin-syntax-top-level-await",
+    "@babel/plugin-syntax-jsx"
   ]
 }

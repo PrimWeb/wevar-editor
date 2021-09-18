@@ -13,17 +13,9 @@ const useStyles = makeStyles({
         padding: '3px',
         border: '2px solid rgb(142, 142, 142)',
         transition: '0.4s cubic-bezier(0.19, 1, 0.22, 1)',
-    },
-    checkedIcon: {
-        background: '#1373e6',
-        borderColor: 'transparent',
-        '&:before': {
-            content: '""',
-            display: 'block',
-            width: '100%',
-            height: '100%',
-            borderRadius: '100%',
-            background: '#fff',
+    }, checkedIcon: {
+        background: '#1373e6', borderColor: 'transparent', '&:before': {
+            content: '""', display: 'block', width: '100%', height: '100%', borderRadius: '100%', background: '#fff',
         },
     },
 });
@@ -32,17 +24,13 @@ const useStyles = makeStyles({
 function StyledRadio(props) {
     const classes = useStyles({});
 
-    return (
-        <Radio
-            disableRipple
-            color="default"
-            checkedIcon={
-                <span className={classnames(classes.icon, classes.checkedIcon)}/>
-            }
-            icon={<span className={classes.icon}/>}
-            {...props}
-        />
-    );
+    return (<Radio
+        disableRipple
+        color="default"
+        checkedIcon={<span className={classnames(classes.icon, classes.checkedIcon)}/>}
+        icon={<span className={classes.icon}/>}
+        {...props}
+    />);
 }
 
 const useLabelStyles = makeStyles({
@@ -53,12 +41,10 @@ const useLabelStyles = makeStyles({
 
 export const ToolbarRadio = ({value, label}: any) => {
     const classes = useLabelStyles({});
-    return (
-        <FormControlLabel
-            classes={classes}
-            value={value}
-            control={<StyledRadio/>}
-            label={label}
-        />
-    );
+    return (<FormControlLabel
+        classes={classes}
+        value={value}
+        control={<StyledRadio/>}
+        label={label}
+    />);
 };

@@ -1,84 +1,69 @@
-import { useNode }                 from '@craftjs/core';
-import { makeStyles }              from '@material-ui/core/styles';
-import React, { ReactHTMLElement } from 'react';
-import { Iterable }                from "immutable";
-import { Grid }                    from '@material-ui/core';
+import { Button, Grid }                    from "@material-ui/core";
+import Avatar                              from '@material-ui/core/Avatar';
+import Card                                from '@material-ui/core/Card';
+import CardActions                         from '@material-ui/core/CardActions';
+import CardHeader                          from '@material-ui/core/CardHeader';
+import CardMedia                           from '@material-ui/core/CardMedia';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import React                               from 'react';
+import { SWRConfig }                       from "swr";
+import fetcherMiddleware                   from "../../../middleware/fetcher";
 
-
-const usePanelStyles = makeStyles((_) => ({
+const useStyles = makeStyles((theme?: Theme) => createStyles({
     root: {
-        background: 'transparent',
-        boxShadow: 'none',
-        '&:before': {
-            backgroundColor: 'rgba(0, 0, 0, 0.05)',
-        },
-        '&.Mui-expanded': {
-            margin: '0 0',
-            minHeight: '40px',
-            '&:before': {
-                opacity: '1',
-            },
-            '& + .MuiExpansionPanel-root:before ': {
-                display: 'block',
-            },
-        },
-    },
+        maxWidth: 345, theme: {
+            props: theme.props
+        }
+    }, media: {
+        height: 0, paddingTop: '56.25%', // 16:9
+    }
 }));
 
-const useSummaryStyles = makeStyles((_) => ({
-    root: {
-        'min-height': '36px',
-        padding: 0,
-    },
-    content: {
-        margin: '0px',
-    },
-}));
-
-const RestaurantDD = (val: any, key: any, nodeProps: [any]) => {
-    val[key] = nodeProps[key];
-    let elm: ReactHTMLElement<any>;
-    elm = React.createElement('dt', {
-        className: 'text-sm text-light-gray-1 text-left font-medium text-dark-gray',
-        innerHTML: `<dt>${val}</dt>`
-    });
-    return elm;
-};
-// noinspection JSUnusedGlobalSymbols
-const Restaurant = ({title, props, summary, children}: any) => {
-    const panelClasses = usePanelStyles({});
-    const summaryClasses = useSummaryStyles({className: "px-6 w-full"});
-    const name = "details";
-    const ddClass = "text-light-gray-2 text-sm text-right text-dark-blue";
-    title = String((title ? title : props.text) || 'N/A');
-    children = ((children instanceof Iterable) ? children : summary[children]) || null;
-    const {nodeProps} = useNode((node) => ({
-        nodeProps:
-            props &&
-            props.reduce((res: any, key: any) => {
-                res[key] = node.data.props[key] || null;
-                return res;
-            }, {})
-
-    }));
-    return (
-        <Grid container direction="row" alignItems="center" spacing={3}>
-            <Grid item xs={4}>
-                <dt className="text-sm text-light-gray-1 text-left font-medium text-dark-gray">
-                    {title}
-                </dt>
-            </Grid>
-            {summary && props ? (
-                <Grid item xs={8}>
-                    {summary(
-                        props.reduce((acc: any, key: any) => {
-                            return RestaurantDD(acc, key, nodeProps)
-                        }, {})
-                    )}
+const Restaurant = ({data}) => {
+    // @ts-ignore
+    const classes = useStyles();
+    const [ expanded, setExpanded ] = React.useState(false);
+    const {id, seo_name, name, cover_photo, city, street, zip_code} = data;
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
+    const adress = street + ", " + city + " " + zip_code;
+    return (<><SWRConfig value={{use: [ fetcherMiddleware ]}}>
+        <Card className={classes.root}>
+            <CardHeader
+                titleTypographyProps={{style: {fontSize: 20}}}
+                avatar={<Avatar aria-label="recipe">
+                    {name[0]}
+                </Avatar>}
+                title={name}
+                subheader={adress}
+            />
+            <CardMedia
+                className={classes.media}
+                image={cover_photo.original_url}
+                title={name}
+            />
+            <CardActions>
+                <Grid
+                    container
+                    spacing={1}
+                    justifyContent="space-around"
+                    alignItems="center"
+                >
+                    <Button
+                        href={`/restaurants/${id}/daily_menus`}
+                        aria-label="daily_menus"
+                        variant="outlined">
+                        Denní Menu
+                    </Button>
+                    <Button href={`/restaurants/${id}/menus`} aria-label="menus"
+                            variant="outlined">
+                        Stálá Menu
+                    </Button>
                 </Grid>
-            ) : null}
-        </Grid>
-    );
-};
+            </CardActions>
+        </Card>
+    </SWRConfig></>);
+}
 
-export default Restaurant; 
+export default Restaurant;

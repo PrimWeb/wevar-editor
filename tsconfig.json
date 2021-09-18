@@ -9,13 +9,25 @@
       "ESNext"
     ],
     "baseUrl": ".",
+    "paths": {
+      "@/components/*": [
+        "components/*"
+      ],
+      "crypto": [
+        "node_modules/crypto-browserify"
+      ],
+      "stream": [
+        "node_modules/stream-browserify"
+      ]
+    },
+    "newLine": "lf",
     "moduleResolution": "node",
     "strict": false,
     "allowJs": true,
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "noUnusedLocals": false,
     "noUnusedParameters": true,
     "isolatedModules": true,
@@ -25,7 +37,8 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "noImplicitAny": false,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "importHelpers": true
   },
   "include": [
     "next-env.d.ts",

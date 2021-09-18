@@ -3,7 +3,7 @@ version: '3.4'
 services:
   editor:
     restart: always
-    image: node:14-alpine
+    image: node:16-alpine
     working_dir: /var/www/html
     expose:
       - 3000
@@ -14,12 +14,18 @@ services:
     entrypoint: 'sh -c "yarn install;yarn run dev"'
     environment:
       TZ: "Europe/Prague"
+      NODE_OPTIONS: "--max-old-space-size=850"
     volumes:
       - ./:/var/www/html
       - node_modules:/var/www/html/node_modules
     ports:
       - 3000:3000
+    networks:
+      proxy:
 
 volumes:
   node_modules:
+
+networks:
+  proxy:
     external: true

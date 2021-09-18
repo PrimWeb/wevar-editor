@@ -30,25 +30,20 @@ export const Video = (props: any) => {
 
     const {videoId} = props;
 
-    return (
-        <YoutubeDiv ref={connect} enabled={enabled}>
-            <YouTube
-                videoId={videoId}
-                opts={{
-                    width: '100%',
-                    height: '100%',
-                }}
-            />
-        </YoutubeDiv>
-    );
+    return (<YoutubeDiv ref={connect} enabled={enabled}>
+        <YouTube
+            videoId={videoId}
+            opts={{
+                width: '100%', height: '100%',
+            }}
+        />
+    </YoutubeDiv>);
 };
 
 Video.craft = {
-    displayName: 'Video',
-    props: {
+    displayName: 'Video', props: {
         videoId: 'IwzUs1IMdyQ',
-    },
-    related: {
+    }, related: {
         toolbar: VideoSettings,
     },
 };

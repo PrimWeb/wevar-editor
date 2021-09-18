@@ -59,7 +59,7 @@ export const TextSettings = () => {
                 </div>);
             }}
         >
-            <ToolbarItem full={true} propKey="color" type="color" label="Text"/>
+            <ToolbarItem full={true} propKey="color" type="color" label="TextH3"/>
             <ToolbarItem
                 full={true}
                 propKey="shadow"

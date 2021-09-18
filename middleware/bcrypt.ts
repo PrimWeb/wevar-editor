@@ -1,11 +1,11 @@
-import mongoose from 'mongoose';
 import bcrypt   from 'bcryptjs';
+import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({name: String});
 
 export const hash = (string: string): string | false => {
     if (string) {
-        let salt = bcrypt.genSaltSync(10)
+        let salt = bcrypt.genSaltSync(10);
         return bcrypt.hashSync(string, salt);
     }
     return false

@@ -1,10 +1,7 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 
 let options: ConnectOptions = new Object({
-    useFindAndModify: false,
-    useCreateIndex: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useFindAndModify: false, useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true,
 });
 
 const connectDB = handler => async (req, res) => {

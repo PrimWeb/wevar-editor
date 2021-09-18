@@ -43,9 +43,7 @@ const Item = styled.a<{ disabled?: boolean }>`
     height: 20px;
     fill: #707070;
   }
-  ${(props) =>
-    props.disabled &&
-    `
+  ${(props) => props.disabled && `
     opacity:0.5;
     cursor: not-allowed;
   `}
@@ -53,46 +51,36 @@ const Item = styled.a<{ disabled?: boolean }>`
 
 export const Header = () => {
     const {enabled, canUndo, canRedo, actions} = useEditor((state, query) => ({
-        enabled: state.options.enabled,
-        canUndo: query.history.canUndo(),
-        canRedo: query.history.canRedo(),
+        enabled: state.options.enabled, canUndo: query.history.canUndo(), canRedo: query.history.canRedo(),
     }));
 
-    return (
-        <HeaderDiv className="header text-white transition w-full">
-            <div className="items-center flex w-full px-4 justify-end">
-                {enabled && (
-                    <div className="flex-1 flex">
-                        <Tooltip title="Undo" placement="bottom">
-                            <Item disabled={!canUndo} onClick={() => actions.history.undo()}>
-                                <UndoSvg/>
-                            </Item>
-                        </Tooltip>
-                        <Tooltip title="Redo" placement="bottom">
-                            <Item disabled={!canRedo} onClick={() => actions.history.redo()}>
-                                <RedoSvg/>
-                            </Item>
-                        </Tooltip>
-                    </div>
-                )}
-                <div className="flex">
-                    <Btn
-                        className={cx([
-                            'transition cursor-pointer',
-                            {
-                                'bg-green-400': enabled,
-                                'bg-primary': !enabled,
-                            },
-                        ])}
-                        onClick={() => {
-                            actions.setOptions((options) => (options.enabled = !enabled));
-                        }}
-                    >
-                        {enabled ? <Checkmark/> : <Customize/>}
-                        {enabled ? 'Finish Editing' : 'Edit'}
-                    </Btn>
-                </div>
+    return (<HeaderDiv className="header text-white transition w-full">
+        <div className="items-center flex w-full px-4 justify-end">
+            {enabled && (<div className="flex-1 flex">
+                <Tooltip title="Undo" placement="bottom">
+                    <Item disabled={!canUndo} onClick={() => actions.history.undo()}>
+                        <UndoSvg/>
+                    </Item>
+                </Tooltip>
+                <Tooltip title="Redo" placement="bottom">
+                    <Item disabled={!canRedo} onClick={() => actions.history.redo()}>
+                        <RedoSvg/>
+                    </Item>
+                </Tooltip>
+            </div>)}
+            <div className="flex">
+                <Btn
+                    className={cx([ 'transition cursor-pointer', {
+                        'bg-green-400': enabled, 'bg-primary': !enabled,
+                    }, ])}
+                    onClick={() => {
+                        actions.setOptions((options) => (options.enabled = !enabled));
+                    }}
+                >
+                    {enabled ? <Checkmark/> : <Customize/>}
+                    {enabled ? 'Finish Editing' : 'Edit'}
+                </Btn>
             </div>
-        </HeaderDiv>
-    );
+        </div>
+    </HeaderDiv>);
 };
