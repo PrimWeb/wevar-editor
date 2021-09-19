@@ -50,7 +50,7 @@ const Item = styled.a<{ disabled?: boolean }>`
 `;
 
 export const Header = () => {
-    const {enabled, canUndo, canRedo, actions} = useEditor((state, query) => ({
+    const { enabled, canUndo, canRedo, actions } = useEditor((state, query) => ({
         enabled: state.options.enabled, canUndo: query.history.canUndo(), canRedo: query.history.canRedo(),
     }));
 
@@ -70,9 +70,11 @@ export const Header = () => {
             </div>)}
             <div className="flex">
                 <Btn
-                    className={cx([ 'transition cursor-pointer', {
-                        'bg-green-400': enabled, 'bg-primary': !enabled,
-                    }, ])}
+                    className={cx([
+                        'transition cursor-pointer', {
+                            'bg-green-400': enabled, 'bg-primary': !enabled,
+                        },
+                    ])}
                     onClick={() => {
                         actions.setOptions((options) => (options.enabled = !enabled));
                     }}

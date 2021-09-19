@@ -8,7 +8,7 @@ export const PaperSettings = () => {
         <ToolbarSection
             title="Colors"
             props={[ 'background', 'color' ]}
-            summary={({background, color}: any) => {
+            summary={({ background, color }: any) => {
                 return (<div className="flex flex-row-reverse">
                     <div
                         style={{
@@ -39,7 +39,7 @@ export const PaperSettings = () => {
         <ToolbarSection
             title="Padding"
             props={[ 'padding' ]}
-            summary={({padding}: any) => {
+            summary={({ padding }: any) => {
                 return `${padding[0] || 0}px ${padding[1] || 0}px ${padding[2] || 0}px ${padding[3] || 0}px`;
             }}
         >

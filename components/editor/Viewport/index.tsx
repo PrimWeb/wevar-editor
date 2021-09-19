@@ -6,10 +6,10 @@ import { Header }  from './Header';
 import { Sidebar } from './Sidebar';
 import { Toolbox } from './Toolbox';
 
-export const Viewport: React.FC = ({children}, props?: {}) => {
+export const Viewport: React.FC = ({ children }, props?: {}) => {
     const {
-        enabled, connectors, actions: {setOptions},
-    } = useEditor((state) => ({
+              enabled, connectors, actions: { setOptions },
+          } = useEditor((state) => ({
         enabled: state.options.enabled,
     }));
 
@@ -34,12 +34,14 @@ export const Viewport: React.FC = ({children}, props?: {}) => {
 
     return (<div className="viewport">
         <div className={cx([ "flex h-full overflow-hidden flex-row w-full fixed" ])}>
-            <Toolbox props={{props}}/>
+            <Toolbox props={{ props }}/>
             <div className="page-container flex flex-1 h-full flex-col">
                 <Header/>
-                <div className={cx([ "craftjs-renderer flex-1 h-full w-full transition pb-8 overflow-auto", {
-                    "bg-renderer-gray": enabled,
-                }, ])} ref={(ref) => connectors.select(connectors.hover(ref, null), null)}>
+                <div className={cx([
+                    "craftjs-renderer flex-1 h-full w-full transition pb-8 overflow-auto", {
+                        "bg-renderer-gray": enabled,
+                    },
+                ])} ref={(ref) => connectors.select(connectors.hover(ref, null), null)}>
                     <div className="relative flex-col flex items-center pt-8">
                         {children}
                     </div>

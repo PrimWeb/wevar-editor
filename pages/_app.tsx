@@ -5,8 +5,8 @@ import React from 'react';
 
 import '../styles/app.css';
 
-// noinspection FunctionNamingConventionJS
-function MyApp({Component: Component, pageProps}) {
+// noinspection FunctionNamingConventionJS,ParameterNamingConventionJS
+function MyApp({ Component, pageProps }) {
     return <Component {...pageProps} />;
 }
 
@@ -18,7 +18,7 @@ function MyApp({Component: Component, pageProps}) {
 MyApp.getInitialProps = async (appContext) => {
     // calls page's `getInitialProps` and fills `appProps.pageProps`
     let appProps = await App.getInitialProps(appContext);
-    return {...appProps};
+    return { ...appProps };
 };
 
 // `getStaticProps` is executed on the server side.

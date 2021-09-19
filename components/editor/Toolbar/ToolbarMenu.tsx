@@ -5,10 +5,10 @@ import React                                                                    
 
 const usePanelStyles = makeStyles((_) => ({
     root: {
-        background: 'transparent', boxShadow: 'none', '&:before': {
+        background:          'transparent', boxShadow: 'none', '&:before': {
             backgroundColor: 'rgba(0, 0, 0, 0.05)',
         }, '&.Mui-expanded': {
-            margin: '0 0', minHeight: '40px', '&:before': {
+            margin:                                   '0 0', minHeight: '40px', '&:before': {
                 opacity: '1',
             }, '& + .MuiExpansionPanel-root:before ': {
                 display: 'block',
@@ -18,7 +18,7 @@ const usePanelStyles = makeStyles((_) => ({
 }));
 
 const useSummaryStyles = makeStyles((_) => ({
-    root: {
+    root:       {
         'min-height': '36px', padding: 0,
     }, content: {
         margin: '0px',
@@ -26,10 +26,10 @@ const useSummaryStyles = makeStyles((_) => ({
 }));
 
 // noinspection JSUnusedGlobalSymbols
-export const ToolbarSection = ({title, props, summary, children}: any) => {
+export const ToolbarSection = ({ title, props, summary, children }: any) => {
     const panelClasses = usePanelStyles({});
     const summaryClasses = useSummaryStyles({});
-    const {nodeProps} = useNode((node) => ({
+    const { nodeProps } = useNode((node) => ({
         nodeProps: props && props.reduce((res: any, key: any) => {
             res[key] = node.data.props[key] || null;
             return res;
@@ -55,7 +55,7 @@ export const ToolbarSection = ({title, props, summary, children}: any) => {
                 </Grid>
             </div>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails style={{padding: '0px 24px 20px'}}>
+        <ExpansionPanelDetails style={{ padding: '0px 24px 20px' }}>
             <Divider/>
             <Grid container spacing={1}>
                 {children}

@@ -4,15 +4,15 @@ import classnames                  from 'classnames';
 import React                       from 'react';
 
 const useStyles = makeStyles({
-    icon: {
+    icon:           {
         borderRadius: '100%',
-        width: 15,
-        height: 15,
-        background: 'transparent',
-        position: 'relative',
-        padding: '3px',
-        border: '2px solid rgb(142, 142, 142)',
-        transition: '0.4s cubic-bezier(0.19, 1, 0.22, 1)',
+        width:        15,
+        height:       15,
+        background:   'transparent',
+        position:     'relative',
+        padding:      '3px',
+        border:       '2px solid rgb(142, 142, 142)',
+        transition:   '0.4s cubic-bezier(0.19, 1, 0.22, 1)',
     }, checkedIcon: {
         background: '#1373e6', borderColor: 'transparent', '&:before': {
             content: '""', display: 'block', width: '100%', height: '100%', borderRadius: '100%', background: '#fff',
@@ -39,7 +39,7 @@ const useLabelStyles = makeStyles({
     },
 });
 
-export const ToolbarRadio = ({value, label}: any) => {
+export const ToolbarRadio = ({ value, label }: any) => {
     const classes = useLabelStyles({});
     return (<FormControlLabel
         classes={classes}

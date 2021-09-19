@@ -10,7 +10,7 @@ import { SWRConfig }                       from "swr";
 import fetcherMiddleware                   from "../../../middleware/fetcher";
 
 const useStyles = makeStyles((theme?: Theme) => createStyles({
-    root: {
+    root:     {
         maxWidth: 345, theme: {
             props: theme.props
         }
@@ -19,19 +19,19 @@ const useStyles = makeStyles((theme?: Theme) => createStyles({
     }
 }));
 
-const Restaurant = ({data}) => {
+const Restaurant = ({ data }) => {
     // @ts-ignore
     const classes = useStyles();
     const [ expanded, setExpanded ] = React.useState(false);
-    const {id, seo_name, name, cover_photo, city, street, zip_code} = data;
+    const { id, seo_name, name, cover_photo, city, street, zip_code } = data;
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
     const adress = street + ", " + city + " " + zip_code;
-    return (<><SWRConfig value={{use: [ fetcherMiddleware ]}}>
+    return (<><SWRConfig value={{ use: [ fetcherMiddleware ] }}>
         <Card className={classes.root}>
             <CardHeader
-                titleTypographyProps={{style: {fontSize: 20}}}
+                titleTypographyProps={{ style: { fontSize: 20 } }}
                 avatar={<Avatar aria-label="recipe">
                     {name[0]}
                 </Avatar>}

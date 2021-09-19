@@ -19,7 +19,7 @@ export const SidebarDiv = styled.div<{ enabled: boolean }>`
 export const Sidebar = () => {
     const [ layersVisible, setLayerVisible ] = useState(true);
     const [ toolbarVisible, setToolbarVisible ] = useState(true);
-    const {enabled} = useEditor((state) => ({
+    const { enabled } = useEditor((state) => ({
         enabled: state.options.enabled,
     }));
 

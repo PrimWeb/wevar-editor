@@ -8,7 +8,7 @@ import Restaurant  from "./Restaurant";
 
 const RestaurantsList = () => {
 
-    const {data, error} = useSWR(`/api/r1`, fetcher);
+    const { data, error } = useSWR(`/api/r1`, fetcher);
 
     if (error) {
         console.log(error);
@@ -23,7 +23,7 @@ const RestaurantsList = () => {
         alignItems="center"
         direction="row"
     >
-        {data.map((elm) => <Restaurant {...{data: elm, fallback: data}} key={elm.id}/>)}
+        {data.map((elm) => <Restaurant {...{ data: elm, fallback: data }} key={elm.id}/>)}
     </Grid>);
 };
 

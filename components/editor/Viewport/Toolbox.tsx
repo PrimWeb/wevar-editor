@@ -31,9 +31,9 @@ const Item = styled.a<{ move?: boolean }>`
   `}
 `;
 
-export const Toolbox = ({props}) => {
+export const Toolbox = ({ props }) => {
     const {
-              enabled, connectors: {create},
+              enabled, connectors: { create },
           } = useEditor((state) => ({
         enabled: state.options.enabled,
     }));
@@ -46,8 +46,8 @@ export const Toolbox = ({props}) => {
             <div ref={(ref) => create(ref, <Element
                 canvas
                 is={Container}
-                background={{r: 78, g: 78, b: 78, a: 1}}
-                color={{r: 0, g: 0, b: 0, a: 1}}
+                background={{ r: 78, g: 78, b: 78, a: 1 }}
+                color={{ r: 0, g: 0, b: 0, a: 1 }}
                 height="300px"
                 width="300px"/>)}>
                 <Tooltip title="Container" placement="right">

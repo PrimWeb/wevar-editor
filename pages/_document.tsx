@@ -5,7 +5,7 @@ import { ServerStyleSheet }                                 from 'styled-compone
 
 export default class RestuDocument extends Document {
 
-    static getInitialProps({renderPage}) {
+    static getInitialProps({ renderPage }) {
         // Step 1: Create an instance of ServerStyleSheet
         const sheet = new ServerStyleSheet();
 
@@ -17,10 +17,11 @@ export default class RestuDocument extends Document {
         const styleTags = sheet.getStyleElement();
         const styles = [ styleTags, materialUISheets.getStyleElement ];
         // Step 4: Pass styleTags as a prop
-        return {...page, ...styles};
+        return { ...page, ...styles };
     }
 
     render() {
+        // noinspection HtmlRequiredTitleElement
         return (<Html>
             <Head>
                 {/* Step 5: Output the styles in the head  */}

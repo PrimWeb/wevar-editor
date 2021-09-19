@@ -1,7 +1,7 @@
 import { FormControl, Grid, InputLabel, MenuItem, Select } from '@material-ui/core';
 import React                                               from 'react';
 
-const DailyMenusList = ({title, value, items}: any) => {
+const DailyMenusList = ({ title, value, items }: any) => {
     return (<Grid item xs={4}>
         <FormControl fullWidth>
             <InputLabel>{title}</InputLabel>
@@ -21,7 +21,7 @@ const DailyMenusList = ({title, value, items}: any) => {
                 <MenuItem disabled value="">
                     <em>Vyberte datum lístku</em>
                 </MenuItem>
-                {items.map(({date}) => (<MenuItem
+                {items.map(({ date }) => (<MenuItem
                     key={date}
                     value={date}
                 >

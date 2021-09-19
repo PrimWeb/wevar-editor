@@ -7,13 +7,13 @@ import { createProxyMiddleware } from "http-proxy-middleware";
 // proxy middleware options
 
 const options = {
-    target: 'https://rest-api.restu.cz', // target host
+    target:       'https://rest-api.restu.cz', // target host
     changeOrigin: true, // needed for virtual hosted sites
-    ws: true, // proxy websockets
-    pathRewrite: {
+    ws:           true, // proxy websockets
+    pathRewrite:  {
         '^/api/r1': '/v1', // rewrite path
         //'^/api/remove/path': '/path', // remove base path
-    }, router: {
+    }, router:    {
         // when request.headers.host == 'dev.localhost:3000',
         //override target 'http://www.example.org' to 'http://localhost:8000'
         '194.182.69.48:3000': 'https://rest-api.restu.cz',

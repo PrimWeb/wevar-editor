@@ -6,10 +6,10 @@ import React                from 'react';
 import { Container } from '../Container';
 import { Video }     from '../Video';
 
-export const Custom2VideoDrop = ({children}) => {
+export const Custom2VideoDrop = ({ children }) => {
     const {
-        connectors: {connect},
-    } = useNode();
+              connectors: { connect },
+          } = useNode();
     return (<div ref={connect} className="flex-1 ml-5 h-full">
         {children}
     </div>);

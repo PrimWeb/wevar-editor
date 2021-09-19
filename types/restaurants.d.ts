@@ -4,7 +4,7 @@ import { SchemaType } from "mongoose";
 export * from "mongoose";
 
 // @ts-ignore
-declare const RestaurantId = new SchemaType('RestaurantId', {type: ObjectID, required: true});
+declare const RestaurantId = new SchemaType('RestaurantId', { type: ObjectID, required: true });
 
 export type Items = {
     id: number; name: string; type?: number; unit?: string; price?: number; ammount?: number; currency?: string; importance?: boolean; description?: string;

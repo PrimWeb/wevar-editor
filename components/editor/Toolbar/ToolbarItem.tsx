@@ -9,30 +9,30 @@ import { ToolbarTextInput } from './ToolbarTextInput';
 const iOSBoxShadow = '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
 
 const SliderStyled = withStyles({
-    root: {
+    root:          {
         color: '#3880ff', height: 2, padding: '5px 0', width: '100%',
-    }, thumb: {
-        height: 14,
-        width: 14,
-        backgroundColor: '#fff',
-        boxShadow: iOSBoxShadow,
-        marginTop: -7,
-        marginLeft: -7,
+    }, thumb:      {
+        height:                     14,
+        width:                      14,
+        backgroundColor:            '#fff',
+        boxShadow:                  iOSBoxShadow,
+        marginTop:                  -7,
+        marginLeft:                 -7,
         '&:focus,&:hover,&$active': {
-            boxShadow: '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)', // Reset on touch devices, it doesn't add specificity
+            boxShadow:              '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)', // Reset on touch devices, it doesn't add specificity
             '@media (hover: none)': {
                 boxShadow: iOSBoxShadow,
             },
         },
-    }, active: {}, valueLabel: {
+    }, active:     {}, valueLabel: {
         left: 'calc(-50% + 11px)', top: -22, '& *': {
             background: 'transparent', color: '#000',
         },
-    }, track: {
+    }, track:      {
         height: 2,
-    }, rail: {
+    }, rail:       {
         height: 2, opacity: 0.5, backgroundColor: '#bfbfbf',
-    }, mark: {
+    }, mark:       {
         backgroundColor: '#bfbfbf', height: 8, width: 1, marginTop: -3,
     }, markActive: {
         opacity: 1, backgroundColor: 'currentColor',
@@ -46,8 +46,8 @@ export const ToolbarItem = ({
                                 full = false, propKey, type, onChange, index, ...props
                             }: ToolbarItemProps) => {
     const {
-        actions: {setProp}, propValue,
-    } = useNode((node) => ({
+              actions: { setProp }, propValue,
+          } = useNode((node) => ({
         propValue: node.data.props[propKey],
     }));
     const value = Array.isArray(propValue) ? propValue[index] : propValue;

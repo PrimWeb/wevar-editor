@@ -3,17 +3,17 @@ import React, { useEffect, useState }            from 'react';
 import { ChromePicker }                          from 'react-color';
 
 const useStyles = makeStyles({
-    root: {
-        padding: 0, width: '100%', // background:"#efeff1",
+    root:     {
+        padding:      0, width: '100%', // background:"#efeff1",
         borderRadius: '100px', border: 'none', margin: 0, marginTop: 7, position: 'relative',
     }, input: {
-        background: '#efeff1',
-        borderRadius: '100px',
-        fontSize: '12px',
-        paddingLeft: '28px',
+        background:    '#efeff1',
+        borderRadius:  '100px',
+        fontSize:      '12px',
+        paddingLeft:   '28px',
         paddingBottom: '8px',
-        paddingTop: '8px',
-        margin: 0,
+        paddingTop:    '8px',
+        margin:        0,
     }, // a style rule
     // notchedOutline: {
     //   borderColor:'transparent',
@@ -22,16 +22,16 @@ const useStyles = makeStyles({
 });
 
 const useLabelStyles = makeStyles({
-    root: {
+    root:           {
         color: '#808080',
     }, formControl: {
-        fontSize: '18px',
+        fontSize:     '18px',
         borderRadius: '100px',
-        paddingLeft: '0px',
-        paddingTop: '3px',
+        paddingLeft:  '0px',
+        paddingTop:   '3px',
         marginBottom: '3px',
-        position: 'relative',
-        left: '-12px',
+        position:     'relative',
+        left:         '-12px',
     }, // a style rule
 });
 
@@ -54,7 +54,7 @@ export const ToolbarTextInput = ({
     }, [ value, type ]);
 
     return (<div
-        style={{width: '100%', position: 'relative'}}
+        style={{ width: '100%', position: 'relative' }}
         onClick={() => {
             setActive(true);
         }}
@@ -82,7 +82,7 @@ export const ToolbarTextInput = ({
         </div>) : null}
         <TextField
             label={label}
-            style={{margin: 0, width: '100%'}}
+            style={{ margin: 0, width: '100%' }}
             value={internalValue || ''}
             onKeyDown={(e) => {
                 if (e.key === 'Enter') {
@@ -110,7 +110,7 @@ export const ToolbarTextInput = ({
                 </InputAdornment>) : null,
             }}
             InputLabelProps={{
-                classes: {
+                classes:   {
                     ...labelClasses,
                 }, shrink: true,
             }}

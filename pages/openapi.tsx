@@ -14,6 +14,7 @@ const theme = createTheme({
     },
 });
 
+// noinspection FunctionNamingConventionJS
 function App() {
     return (<ThemeProvider theme={theme}>
         <div className="h-full h-screen">

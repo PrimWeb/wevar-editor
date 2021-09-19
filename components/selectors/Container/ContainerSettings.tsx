@@ -8,7 +8,7 @@ export const ContainerSettings = () => {
         <ToolbarSection
             title="Dimensions"
             props={[ 'width', 'height' ]}
-            summary={({width, height}: any) => {
+            summary={({ width, height }: any) => {
                 return `${width || 0} x ${height || 0}`;
             }}
         >
@@ -18,7 +18,7 @@ export const ContainerSettings = () => {
         <ToolbarSection
             title="Colors"
             props={[ 'background', 'color' ]}
-            summary={({background, color}: any) => {
+            summary={({ background, color }: any) => {
                 return (<div className="flex flex-row-reverse">
                     <div
                         style={{
@@ -49,7 +49,7 @@ export const ContainerSettings = () => {
         <ToolbarSection
             title="Margin"
             props={[ 'margin' ]}
-            summary={({margin}: any) => {
+            summary={({ margin }: any) => {
                 return `${margin[0] || 0}px ${margin[1] || 0}px ${margin[2] || 0}px ${margin[3] || 0}px`;
             }}
         >
@@ -61,7 +61,7 @@ export const ContainerSettings = () => {
         <ToolbarSection
             title="Padding"
             props={[ 'padding' ]}
-            summary={({padding}: any) => {
+            summary={({ padding }: any) => {
                 return `${padding[0] || 0}px ${padding[1] || 0}px ${padding[2] || 0}px ${padding[3] || 0}px`;
             }}
         >

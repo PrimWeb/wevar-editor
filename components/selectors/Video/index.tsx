@@ -19,16 +19,16 @@ const YoutubeDiv = styled.div<any>`
 `;
 
 export const Video = (props: any) => {
-    const {enabled} = useEditor((state) => ({
+    const { enabled } = useEditor((state) => ({
         enabled: state.options.enabled,
     }));
     const {
-        connectors: {connect},
-    } = useNode((node) => ({
+              connectors: { connect },
+          } = useNode((node) => ({
         selected: node.events.selected,
     }));
 
-    const {videoId} = props;
+    const { videoId } = props;
 
     return (<YoutubeDiv ref={connect} enabled={enabled}>
         <YouTube
@@ -43,7 +43,7 @@ export const Video = (props: any) => {
 Video.craft = {
     displayName: 'Video', props: {
         videoId: 'IwzUs1IMdyQ',
-    }, related: {
+    }, related:  {
         toolbar: VideoSettings,
     },
 };

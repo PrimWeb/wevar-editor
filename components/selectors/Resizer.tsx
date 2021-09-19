@@ -68,21 +68,29 @@ const Indicators = styled.div<{ bound?: 'row' | 'column' }>`
   }
 `;
 
-export const Resizer = ({propKey, children, ...props}: any) => {
+export const Resizer = ({ propKey, children, ...props }: any) => {
     const {
-        id, actions: {setProp}, connectors: {connect}, fillSpace, nodeWidth, nodeHeight, parent, active, inNodeContext,
-    } = useNode((node) => ({
-        parent: node.data.parent,
-        active: node.events.selected,
-        nodeWidth: node.data.props[propKey.width],
+              id,
+              actions:    { setProp },
+              connectors: { connect },
+              fillSpace,
+              nodeWidth,
+              nodeHeight,
+              parent,
+              active,
+              inNodeContext,
+          } = useNode((node) => ({
+        parent:     node.data.parent,
+        active:     node.events.selected,
+        nodeWidth:  node.data.props[propKey.width],
         nodeHeight: node.data.props[propKey.height],
-        fillSpace: node.data.props.fillSpace,
+        fillSpace:  node.data.props.fillSpace,
     }));
 
-    const {isRootNode, parentDirection} = useEditor((state, query) => {
+    const { isRootNode, parentDirection } = useEditor((state, query) => {
         return {
             parentDirection: parent && state.nodes[parent] && state.nodes[parent].data.props.flexDirection,
-            isRootNode: query.node(id).isRoot(),
+            isRootNode:      query.node(id).isRoot(),
         };
     });
 
@@ -90,7 +98,7 @@ export const Resizer = ({propKey, children, ...props}: any) => {
     const isResizing = useRef<Boolean>(false);
     const editingDimensions = useRef<any>(null);
     const nodeDimensions = useRef(null);
-    nodeDimensions.current = {width: nodeWidth, height: nodeHeight};
+    nodeDimensions.current = { width: nodeWidth, height: nodeHeight };
 
     /**
      * Using an internal value to ensure the width/height set in the node is converted to px
@@ -101,18 +109,21 @@ export const Resizer = ({propKey, children, ...props}: any) => {
     });
 
     const updateInternalDimensionsInPx = useCallback(() => {
-        const {width: nodeWidth, height: nodeHeight} = nodeDimensions.current;
+        const { width: nodeWidth, height: nodeHeight } = nodeDimensions.current;
 
-        const width = percentToPx(nodeWidth, resizable.current && getElementDimensions(resizable.current.resizable.parentElement).width);
-        const height = percentToPx(nodeHeight, resizable.current && getElementDimensions(resizable.current.resizable.parentElement).height);
+        const width = percentToPx(nodeWidth,
+            resizable.current && getElementDimensions(resizable.current.resizable.parentElement).width);
+        const height = percentToPx(nodeHeight,
+            resizable.current && getElementDimensions(resizable.current.resizable.parentElement).height);
 
         setInternalDimensions({
             width, height,
         });
     }, []);
 
+    // noinspection LocalVariableNamingConventionJS
     const updateInternalDimensionsWithOriginal = useCallback(() => {
-        const {width: nodeWidth, height: nodeHeight} = nodeDimensions.current;
+        const { width: nodeWidth, height: nodeHeight } = nodeDimensions.current;
         setInternalDimensions({
             width: nodeWidth, height: nodeHeight,
         });
@@ -124,8 +135,8 @@ export const Resizer = ({propKey, children, ...props}: any) => {
             return;
         }
 
-        const currentWidth = parseInt(editingDimensions.current.width),
-            currentHeight = parseInt(editingDimensions.current.height);
+        const currentWidth  = parseInt(editingDimensions.current.width),
+              currentHeight = parseInt(editingDimensions.current.height);
 
         return {
             width: currentWidth + parseInt(width), height: currentHeight + parseInt(height),
@@ -148,13 +159,16 @@ export const Resizer = ({propKey, children, ...props}: any) => {
     }, [ updateInternalDimensionsWithOriginal ]);
 
     return (<Resizable
-        enable={[ 'top', 'left', 'bottom', 'right', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', ].reduce((acc: any, key) => {
-            acc[key] = active && inNodeContext;
-            return acc;
-        }, {})}
-        className={cx([ {
-            'm-auto': isRootNode, flex: true,
-        }, ])}
+        enable={[ 'top', 'left', 'bottom', 'right', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', ].reduce(
+            (acc: any, key) => {
+                acc[key] = active && inNodeContext;
+                return acc;
+            }, {})}
+        className={cx([
+            {
+                'm-auto': isRootNode, flex: true,
+            },
+        ])}
         ref={(ref) => {
             if (ref) {
                 resizable.current = ref;
@@ -177,7 +191,7 @@ export const Resizer = ({propKey, children, ...props}: any) => {
         }}
         onResize={(_, __, ___, d) => {
             const dom = resizable.current.resizable;
-            let {width, height}: any = getUpdatedDimensions(d.width, d.height);
+            let { width, height }: any = getUpdatedDimensions(d.width, d.height);
             if (isPercentage(nodeWidth)) {
                 width = pxToPercent(width, getElementDimensions(dom.parentElement).width) + '%';
             } else {

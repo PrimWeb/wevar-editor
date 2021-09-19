@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 
 const Restaurants = () => {
     const router = useRouter();
-    const {id, path} = router.query;
+    const { id, path } = router.query;
     console.log(path);
     const [ menuType, menuId, menuCategori ] = path;
     return (<>

@@ -3,10 +3,10 @@ import React                from 'react';
 import { Button }           from '../Button';
 import { Container }        from '../Container';
 
-export const OnlyButtons = ({children, ...props}) => {
+export const OnlyButtons = ({ children, ...props }) => {
     const {
-        connectors: {connect},
-    } = useNode();
+              connectors: { connect },
+          } = useNode();
     return (<div title="only-buttons" ref={connect} className="w-full mt-5" {...props}>
         {children}
     </div>);
@@ -29,7 +29,7 @@ export const Custom1 = (props: any) => {
             <Button/>
             <Button
                 buttonStyle="outline"
-                color={{r: 255, g: 255, b: 255, a: 1}}
+                color={{ r: 255, g: 255, b: 255, a: 1 }}
             />
         </Element>
     </Container>);

@@ -19,12 +19,14 @@ declare type DefOpt = {
 };
 //let defOpt: defOpt;
 let defOpt: DefOpt = {
-    id: null, url: new URL(process.env.API_URL + "/restaurants"), stringUrl: (id?: number, url?: URL) => {
+    id:      null, url: new URL(process.env.API_URL + "/restaurants"), stringUrl: (id?: number, url?: URL) => {
         return (id || defOpt.id) > 0 && defOpt?.url ? `${url || defOpt?.url}/${id || defOpt?.id}${defOpt.endpoint}`
             : process.env.API_URL + defOpt.endpoint;
     }, data: null, endpoint: "/restaurants", headers: new Headers({
-        "Content-Type": "application/json", "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
-        "X-Restu-Api-Key": process.env.API_KEY, "Upgrade-Insecure-Requests": "1",
+        "Content-Type":              "application/json",
+        "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+        "X-Restu-Api-Key":           process.env.API_KEY,
+        "Upgrade-Insecure-Requests": "1",
     }),
 };
 const theme = createTheme({
@@ -37,8 +39,6 @@ const theme = createTheme({
 
 export let props: { fallback: {} };
 
-const ApiInfoText = (props) => <Text {...props} />;
-
 const MyApp = () => {
     return (<ThemeProvider theme={theme}>
         <RestuEditor
@@ -47,7 +47,9 @@ const MyApp = () => {
             }}
             enabled={true}
             onRender={RenderNode}>
-            <SWRConfig value={{use: [ fetcherMiddleware ], fetcher: fetcher}}>
+            <SWRConfig value={{
+                use: [ fetcherMiddleware ], fetcher: fetcher
+            }}>
                 <Grid className="h-full h-screen p-1">
                     <NextSeo
                         title="Wevar Editor"

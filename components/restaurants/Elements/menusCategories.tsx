@@ -3,7 +3,7 @@ import { useRouter }                                       from "next/router";
 import React                                               from 'react';
 import { RestaurantMenusCategories }                       from "../../../models/vRestaurants";
 
-const MenusCategories = ({title, value, items, parent}: any) => {
+const menusCategories = ({ title, value, items, parent }: any) => {
     const router = useRouter();
     // noinspection FunctionWithMultipleReturnPointsJS
     return <Grid item xs={4}>
@@ -35,4 +35,4 @@ const MenusCategories = ({title, value, items, parent}: any) => {
     </Grid>;
 };
 
-export default MenusCategories;
+export default menusCategories;

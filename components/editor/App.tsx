@@ -9,13 +9,11 @@ import CssBaseline                    from "@material-ui/core/CssBaseline";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { NextSeo }                    from "next-seo";
 import React                          from "react";
+import { Container, Text }            from "../selectors";
+import { Custom1, OnlyButtons }       from "../selectors/Custom1";
+import { Custom2, Custom2VideoDrop }  from "../selectors/Custom2";
 
-import { RenderNode, Viewport }      from "../components/editor";
-import { Container, Text }           from "../components/selectors";
-import { Custom1, OnlyButtons }      from "../components/selectors/Custom1";
-import { Custom2, Custom2VideoDrop } from "../components/selectors/Custom2";
-
-let props: {};
+import { RenderNode, Viewport } from "./index";
 
 const theme = createTheme({
     typography: {
@@ -47,9 +45,11 @@ function App() {
                             is={Paper}
                             width="800px"
                             height="1131px"
-                            background={{r: 255, g: 255, b: 255, a: 1}}
+                            background={{
+                                r: 255, g: 255, b: 255, a: 1
+                            }}
                             padding={[ "20", "20", "20", "20" ]}
-                            custom={{displayName: "Papír A4"}}>
+                            custom={{ displayName: "Papír A4" }}>
                         </Element>
                     </Frame>
                 </Viewport>

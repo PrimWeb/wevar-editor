@@ -1,7 +1,8 @@
 import bcrypt   from 'bcryptjs';
 import mongoose from 'mongoose';
 
-const schema = new mongoose.Schema({name: String});
+// noinspection JSUnusedLocalSymbols
+const schema = new mongoose.Schema({ name: String });
 
 export const hash = (string: string): string | false => {
     if (string) {

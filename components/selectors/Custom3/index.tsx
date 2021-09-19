@@ -3,7 +3,7 @@ import ErrorIcon                                               from "@material-u
 import React                                                   from "react";
 import { Container }                                           from "../Container";
 
-export const CustomItem = ({item}) => {
+export const CustomItem = ({ item }) => {
     return (<ListItem>
         <ListItemText>{item.toString()}</ListItemText>
     </ListItem>);
@@ -51,10 +51,10 @@ export const Custom3 = (props) => {
                 </h2>
             </div>
             <GridList>
-                {props.fallback.data.map((item) => console.log({item}))}
+                {props.fallback.data.map((item) => console.log({ item }))}
             </GridList>
         </Container>);
     }
     console.log(props);
-    return <Container {...props}></Container>;
+    return <Container {...props}/>;
 };
