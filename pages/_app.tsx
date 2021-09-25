@@ -1,12 +1,14 @@
 // noinspection JSUnusedGlobalSymbols
 
-import App   from "next/app";
-import React from 'react';
+import App, { AppContext, AppProps } from "next/app";
+import React                         from 'react';
 
 import '../styles/app.css';
 
 // noinspection FunctionNamingConventionJS,ParameterNamingConventionJS
-function MyApp({ Component, pageProps }) {
+function MyApp(props: AppProps) {
+    // noinspection LocalVariableNamingConventionJS
+    const { Component, pageProps } = props;
     return <Component {...pageProps} />;
 }
 
@@ -15,26 +17,10 @@ function MyApp({ Component, pageProps }) {
 // perform automatic static optimization, causing every page in your app to
 // be server-side rendered.
 //
-MyApp.getInitialProps = async (appContext) => {
+MyApp.getInitialProps = async (appContext: AppContext) => {
     // calls page's `getInitialProps` and fills `appProps.pageProps`
     let appProps = await App.getInitialProps(appContext);
     return { ...appProps };
 };
-
-// `getStaticProps` is executed on the server side.
-
-// App.getStaticProps = async () => {
-//     console.log(API);
-//     const url = useRouter().asPath;
-//     const repoInfo = await fetcher(url);
-//     console.log("ServerSideProps", repoInfo, "ServerSideProps");
-//     return {
-//         props: {
-//             fallback: {
-//                 [url]: repoInfo,
-//             },
-//         },
-//     };
-// };
 
 export default MyApp;

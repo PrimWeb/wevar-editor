@@ -1,5 +1,5 @@
-import App from "@/components/editor/App";
+import EditorApp from "@/components/editor/EditorApp";
 
-export default function () {
-    return <App/>;
+export default function App() {
+    return <EditorApp/>;
 }

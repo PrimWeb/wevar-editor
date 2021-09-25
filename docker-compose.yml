@@ -8,13 +8,14 @@ services:
     expose:
       - 3000
     command:
-      - "yarn install --network-timeout=10000"
+      - "yarn install --network-timeout=15000"
       - "yarn dev"
     hostname: editor
-    entrypoint: 'sh -c "yarn install;yarn run dev"'
+    entrypoint: 'sh -c "yarn install --ignore-platform; yarn run ${DEV_COMMAND:-dev}"'
     environment:
       TZ: "Europe/Prague"
-      NODE_OPTIONS: "--max-old-space-size=850"
+      NODE_OPTIONS: "--max-old-space-size=2048 --inspect"
+      DEV_COMMAND: "dev"
     volumes:
       - ./:/var/www/html
       - node_modules:/var/www/html/node_modules

@@ -5,6 +5,7 @@
     "jsx": "preserve",
     "lib": [
       "dom",
+      "es6",
       "es2017",
       "ESNext"
     ],
@@ -20,25 +21,26 @@
         "node_modules/stream-browserify"
       ]
     },
-    "newLine": "lf",
-    "moduleResolution": "node",
-    "strict": false,
     "allowJs": true,
-    "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": true,
-    "isolatedModules": true,
-    "removeComments": false,
-    "preserveConstEnums": true,
-    "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "newLine": "lf",
+    "noEmit": true,
     "noImplicitAny": false,
-    "strictNullChecks": false,
-    "importHelpers": true
+    "noImplicitThis": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": false,
+    "sourceMap": false,
+    "strict": false,
+    "strictNullChecks": false
   },
   "include": [
     "next-env.d.ts",
