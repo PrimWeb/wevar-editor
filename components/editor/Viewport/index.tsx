@@ -46,8 +46,8 @@ export const Viewport: React.FC = ({ children }, props?: {}) => {
                         {children}
                     </div>
                     <div className="flex items-center justify-center w-full pt-6 text-xs text-light-gray-2">
-                        <a href="https://www.primweb.cz">
-                            This site is powered by PrimWeb.cz
+                        <a href="https://www.primweb.cz" target="_blank">
+                            This editor is powered by PrimWeb.cz
                         </a>
                     </div>
                 </div>

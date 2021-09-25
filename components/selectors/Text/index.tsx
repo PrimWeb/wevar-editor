@@ -5,12 +5,21 @@ import ContentEditable        from 'react-contenteditable';
 import { TextSettings } from './TextSettings';
 
 export type TextProps = {
-    fontSize: string; textAlign: string; fontWeight: string; color: Record<'r' | 'g' | 'b' | 'a', string>; shadow: number; text: string; margin: [ string, string, string, string ];
+    fontSize: string; textAlign: string; fontWeight: string; color: Record<'r'|'g'|'b'|'a', string>; shadow: number; text: string; margin: [ string|number, string|number, string|number, string|number ];
 };
-
-export const Text = ({
-                         fontSize, textAlign, fontWeight, color, shadow, text, margin,
-                     }: Partial<TextProps>) => {
+const defaultProps = {
+    fontSize:   '15',
+    textAlign:  'left',
+    fontWeight: '500',
+    shadow:     0,
+    text:       'Text',
+    margin:     [ "0", "0", "0", "0" ],
+    color:      { r: 92, g: 90, b: 90, a: 1 },
+};
+export const Text = (props: Partial<TextProps>) => {
+    const {
+              fontSize, textAlign, fontWeight, color, shadow, text, margin,
+          } = { ...defaultProps, ...props };
     const {
               connectors: { connect }, setProp,
           } = useNode();

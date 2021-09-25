@@ -5,7 +5,7 @@ import { Resizer } from '../Resizer';
 import { ContainerSettings } from './ContainerSettings';
 
 export type ContainerProps = {
-    background: Record<'r' | 'g' | 'b' | 'a', number>; color: Record<'r' | 'g' | 'b' | 'a', number>; flexDirection: string; alignItems: string; justifyContent: string; fillSpace: string; width: string; height: string; padding: string[]; margin: string[]; marginTop: number; marginLeft: number; marginBottom: number; marginRight: number; shadow: number; children: React.ReactNode; radius: number;
+    background: Record<'r'|'g'|'b'|'a', number>; color: Record<'r'|'g'|'b'|'a', number>; flexDirection: string; alignItems: string; justifyContent: string; fillSpace: string; width: string; height: string; padding: string[]; margin: string[]; marginTop: number; marginLeft: number; marginBottom: number; marginRight: number; shadow: number; children: React.ReactNode; radius: number;
 };
 
 const defaultProps = {
@@ -53,6 +53,7 @@ export const Container = (props: Partial<ContainerProps>) => {
             boxShadow:    shadow === 0 ? 'none' : `0px 3px 100px ${shadow}px rgba(0, 0, 0, 0.13)`,
             borderRadius: `${radius}px`,
             flex:         fillSpace === 'yes' ? 1 : 'unset',
+            maxWidth:     ""
         }}
     >
         {children}

@@ -1,16 +1,23 @@
 import { useEditor, useNode } from '@craftjs/core';
 import React                  from 'react';
 import ContentEditable        from 'react-contenteditable';
+import { TextSettings }       from './TextSettings';
 
-import { TextSettings } from './TextSettings';
-
-export type TextProps = {
-    fontSize: string; textAlign: string; fontWeight: string; color: Record<'r' | 'g' | 'b' | 'a', string>; shadow: number; text: string; margin: [ string, string, string, string ];
+export type RestuTextProps = {
+    fontSize: string; textAlign: string; fontWeight: string; color: Record<'r'|'g'|'b'|'a', string>; shadow: number; text: string; margin: [ string|number, string|number, string|number, string|number ]; tagName: string;
 };
 
-export const TextH3 = ({
-                           fontSize, textAlign, fontWeight, color, shadow, text, margin,
-                       }: Partial<TextProps>) => {
+export const RestuText = (props: Partial<RestuTextProps>) => {
+    const {
+              color  = { r: 92, g: 90, b: 90, a: 1 },
+              fontSize,
+              fontWeight,
+              margin = [ 0, 0, 0, 0 ],
+              shadow,
+              tagName,
+              text,
+              textAlign
+          } = props;
     const {
               connectors: { connect }, setProp,
           } = useNode();
@@ -24,28 +31,30 @@ export const TextH3 = ({
         onChange={(e) => {
             setProp((prop) => (prop.text = e.target.value), 500);
         }} // use true to disable editing
-        tagName="h3" // Use a custom HTML tag (uses a div by default)
+        tagName={tagName} // Use a custom HTML tag (uses a div by default)
         style={{
-            width:      '100%',
-            margin:     `${margin[0]}px ${margin[1]}px ${margin[2]}px ${margin[3]}px`,
             color:      `rgba(${Object.values(color)})`,
-            fontSize:   `${fontSize}px`,
-            textShadow: `0px 0px 2px rgba(0,0,0,${(shadow || 0) / 100})`,
+            fontSize:   `${fontSize}`,
             fontWeight,
+            margin:     `${margin[0]}px ${margin[1]}px ${margin[2]}px ${margin[3]}px`,
             textAlign,
+            textShadow: `0px 0px 2px rgba(0,0,0,${(shadow || 0) / 100})`,
+            width:      '100%',
+
         }}
     />);
 };
 
-TextH3.craft = {
-    displayName: 'TextH3', props: {
-        fontSize:   '22',
-        textAlign:  'center',
-        fontWeight: '500',
+RestuText.craft = {
+    displayName: 'RestuText', props: {
         color:      { r: 92, g: 90, b: 90, a: 1 },
+        fontSize:   '22',
+        fontWeight: '500',
         margin:     [ 0, 0, 0, 0 ],
         shadow:     0,
-        text:       'TextH3',
+        tagName:    "h3",
+        text:       'RestuText',
+        textAlign:  'center'
     }, related:  {
         toolbar: TextSettings,
     },

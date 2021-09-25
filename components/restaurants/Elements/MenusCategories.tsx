@@ -1,25 +1,36 @@
+import { RestuMenuCategory }                               from "@/components/selectors";
+import { useEditor }                                       from "@craftjs/core";
 import { FormControl, Grid, InputLabel, MenuItem, Select } from '@material-ui/core';
-import { useRouter }                                       from "next/router";
 import React                                               from 'react';
 import { RestaurantMenusCategories }                       from "../../../models/vRestaurants";
 
-const menusCategories = ({ title, value, items, parent }: any) => {
-    const router = useRouter();
+const MenusCategories = ({ title, value, items }: any) => {
+    // const router = useRouter();
+    const { actions, query } = useEditor(()/*state*/ => {
+        let allDescendants = false;
+
+        return { allDescendants }
+    });
     // noinspection FunctionWithMultipleReturnPointsJS
-    return <Grid item xs={4}>
-        <FormControl fullWidth={true}>
+    return <Grid item xs={12}>
+        <FormControl fullWidth>
             <InputLabel>{title}</InputLabel>
             <Select
                 defaultValue={value}
                 renderValue={(selected: RestaurantMenusCategories) => {
                     if (!selected.id) {
-                        return <em>Vyberte datum lístku</em>;
+                        return <em>Vyberte kategorii y</em>;
                     }
+                    console.log();
                     return selected.name;
                 }}
                 onChange={(e) => {
                     // @ts-ignore
-                    router.push(router.asPath + '/' + parent + '/' + e.target.value.id).then(r => r);
+                    console.log(e.target.value);
+                    const menuNodeTree = query.parseReactElement(<RestuMenuCategory {...e.target.value}/>)
+                        .toNodeTree();
+                    actions.addNodeTree(menuNodeTree);
+                    console.log(actions.addNodeTree(menuNodeTree)); //|| 'ROOT_NODE'
                 }}>
                 <MenuItem disabled value="">
                     <em>Vyberte kategorii</em>
@@ -35,4 +46,4 @@ const menusCategories = ({ title, value, items, parent }: any) => {
     </Grid>;
 };
 
-export default menusCategories;
+export default MenusCategories;

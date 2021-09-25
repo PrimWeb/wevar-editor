@@ -1,13 +1,13 @@
-import { useEditor }       from '@craftjs/core';
+import Menus               from "@/components/restaurants/Elements/Menus";
+import { useEditor }       from "@craftjs/core";
 import { Layers }          from '@craftjs/layers';
 import React, { useState } from 'react';
 import styled              from 'styled-components';
-
-import CustomizeIcon from '../../../../public/icons/customize.svg';
-import LayerIcon     from '../../../../public/icons/layers.svg';
-import { Toolbar }   from '../../Toolbar';
-
-import { SidebarItem } from './SidebarItem';
+import CustomizeIcon       from '../../../../public/icons/customize.svg';
+import LayerIcon           from '../../../../public/icons/layers.svg';
+import TextFillIcon        from '../../../../public/icons/toolbox/text-fill.svg';
+import { Toolbar }         from '../../Toolbar';
+import { SidebarItem }     from './SidebarItem';
 
 export const SidebarDiv = styled.div<{ enabled: boolean }>`
   width: 280px;
@@ -16,8 +16,10 @@ export const SidebarDiv = styled.div<{ enabled: boolean }>`
   margin-right: ${(props) => (props.enabled ? 0 : -280)}px;
 `;
 
+// noinspection FunctionWithMoreThanThreeNegationsJS
 export const Sidebar = () => {
-    const [ layersVisible, setLayerVisible ] = useState(true);
+    const [ menusVisible, setMenusVisible ] = useState(true);
+    const [ layersVisible, setLayerVisible ] = useState(false);
     const [ toolbarVisible, setToolbarVisible ] = useState(true);
     const { enabled } = useEditor((state) => ({
         enabled: state.options.enabled,
@@ -26,9 +28,18 @@ export const Sidebar = () => {
     return (<SidebarDiv enabled={enabled} className="sidebar transition bg-white w-2">
         <div className="flex flex-col h-full">
             <SidebarItem
+                icon={TextFillIcon}
+                title='Menus'
+                height={!layersVisible && !toolbarVisible ? 'full' : 'auto'}
+                visible={menusVisible}
+                onChange={(val) => setMenusVisible(val)}
+            >
+                <Menus/>
+            </SidebarItem>
+            <SidebarItem
                 icon={CustomizeIcon}
                 title="Customize"
-                height={!layersVisible ? 'full' : '55%'}
+                height={!layersVisible && !menusVisible ? 'full' : '40%'}
                 visible={toolbarVisible}
                 onChange={(val) => setToolbarVisible(val)}
             >
@@ -37,7 +48,7 @@ export const Sidebar = () => {
             <SidebarItem
                 icon={LayerIcon}
                 title="Layers"
-                height={!toolbarVisible ? 'full' : '45%'}
+                height={!toolbarVisible && !menusVisible ? 'full' : 'auto'}
                 visible={layersVisible}
                 onChange={(val) => setLayerVisible(val)}
             >
